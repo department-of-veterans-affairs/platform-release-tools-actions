@@ -1,5 +1,6 @@
   
-  
+name: 'vsp-release-tools-actions'
+description: 'common action security'  
 inputs:
   key:
     description: keys for actions/cache@v2
