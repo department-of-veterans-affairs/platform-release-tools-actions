@@ -1,5 +1,5 @@
   
-name: 'vsp-release-tools-actions'
+name: 'platform-release-tools-actions'
 description: 'common action security'  
 inputs:
   key:
