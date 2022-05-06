@@ -10,12 +10,14 @@ inputs:
 runs:
   using: composite  
   steps:
-  #  - name: Checkout
-  #    uses: actions/checkout@v2
-  #    with:
-  #      fetch-depth: 0
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        repository: department-of-veterans-affairs/platform-release-tools-actions
+        path: ./.github/workflows/platform-release-tools-actions
+        ref: sri/common-actions1
     - name: Install dependencies
-      uses: ./.github/workflows/install
+      uses: ./.github/workflows/platform-release-tools-actions/install
       with:
         key: ${{ hashFiles('yarn.lock') }}
         yarn_cache_folder: .cache/yarn
