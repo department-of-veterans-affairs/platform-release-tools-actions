@@ -1,6 +1,12 @@
 name: Init Dashboard Data Repo
 description: Check out repo and install dependencies
 
+inputs:
+  branch:
+    description: branch to check out
+    required: false
+    default: ''
+
 runs:
   using: composite
   steps:
@@ -10,6 +16,7 @@ runs:
         repository: department-of-veterans-affairs/qa-standards-dashboard-data
         token: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
         path: qa-standards-dashboard-data
+        ref: ${{ inputs.branch }}
 
     - name: Get Node version
       id: get-node-version
