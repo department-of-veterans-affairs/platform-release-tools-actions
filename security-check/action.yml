@@ -1,6 +1,6 @@
-  
+
 name: 'platform-release-tools-actions'
-description: 'common action security'  
+description: 'common action security'
 inputs:
   key:
     description: keys for actions/cache@v2
@@ -8,7 +8,7 @@ inputs:
     default: ''
 
 runs:
-  using: composite  
+  using: composite
   steps:
     - name: Install dependencies
       uses: ./.github/workflows/install
@@ -24,15 +24,15 @@ runs:
       shell: bash
       run: |
         if [[ ${{ github.ref }} == 'refs/heads/master' ]]; then
-          echo ::set-output name=all_changed_files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          echo "all_changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})" >> $GITHUB_OUTPUT
         else
-          echo ::set-output name=all_changed_files::$(git diff --name-only origin/master...)
+          echo "all_changed_files=$(git diff --name-only origin/master...)" >> $GITHUB_OUTPUT
         fi
 
     - name: Get app entries for changed files
       id: get-changed-apps
       shell: bash
-      run: echo ::set-output name=app_entries::$(node script/github-actions/get-changed-apps.js)
+      run: echo "app_entries=$(node script/github-actions/get-changed-apps.js)" >> $GITHUB_OUTPUT
       env:
         CHANGED_FILE_PATHS: ${{ steps.changed-files.outputs.all_changed_files }}
 

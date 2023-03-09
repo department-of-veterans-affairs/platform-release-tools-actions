@@ -1,5 +1,5 @@
 name: 'platform-release-tools-actions'
-description: 'aws credentials'  
+description: 'aws credentials'
 inputs:
   aws-access-key-id:
     description: aws-access-key-id
@@ -11,9 +11,9 @@ inputs:
 
 runs:
   using: composite
-  steps:  
+  steps:
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ inputs.aws-access-key-id }}
         aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
