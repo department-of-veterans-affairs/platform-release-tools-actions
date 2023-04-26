@@ -11,7 +11,7 @@ runs:
   using: composite
   steps:
     - name: Checkout Testing Tools Team Dashboard Data repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: department-of-veterans-affairs/qa-standards-dashboard-data
         token: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
@@ -21,7 +21,7 @@ runs:
     - name: Get Node version
       id: get-node-version
       shell: bash
-      run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+      run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
       working-directory: qa-standards-dashboard-data
 
     - name: Setup Node

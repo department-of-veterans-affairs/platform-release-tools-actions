@@ -5,12 +5,12 @@ runs:
   using: composite
   steps:
     - name: Checkout Testing Tools Team Dashboard Data repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: department-of-veterans-affairs/qa-standards-dashboard-data
         token: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
         path: qa-standards-dashboard-data
-        
+
     - name: Get BigQuery service credentials
       uses: marvinpinto/action-inject-ssm-secrets@v1.2.1
       with:
@@ -18,7 +18,7 @@ runs:
         env_variable_name: BIGQUERY_SERVICE_CREDENTIALS
 
     - name: Setup Cloud SDK
-      uses: google-github-actions/setup-gcloud@v0
+      uses: google-github-actions/setup-gcloud@v0.6.2
       with:
         project_id: vsp-analytics-and-insights
         service_account_key: ${{ env.BIGQUERY_SERVICE_CREDENTIALS }}
